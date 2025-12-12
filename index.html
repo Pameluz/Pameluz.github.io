@@ -17,6 +17,7 @@
             --background-color: #f9f9f9;
             --text-color: #333;
             --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
         
         * {
@@ -214,6 +215,113 @@
             font-size: 0.9rem;
         }
         
+        /* Estilos para la sección de repositorios */
+        .repositories-section {
+            grid-column: 1 / -1;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
+        
+        .repositories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .repo-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .repo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            border-left-color: var(--accent-color);
+        }
+        
+        .repo-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .repo-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .repo-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .repo-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .repo-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .tech-tag {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-top: auto;
+        }
+        
+        .repo-link:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .repo-link i {
+            margin-right: 8px;
+        }
+        
         footer {
             text-align: center;
             padding: 20px;
@@ -255,6 +363,10 @@
                 margin-right: 0;
                 margin-bottom: 20px;
             }
+            
+            .repositories-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
         }
         
         @media (max-width: 600px) {
@@ -270,6 +382,20 @@
                 width: 150px;
                 height: 150px;
             }
+            
+            .repositories-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .repo-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .repo-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
         }
         
         /* Estilo para enlaces */
@@ -281,6 +407,43 @@
         
         a:hover {
             color: var(--accent-color);
+        }
+        
+        /* Navegación interna */
+        .nav-internal {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background-color: white;
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .nav-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Para ocultar/mostrar secciones */
+        .section-content {
+            display: block;
         }
     </style>
 </head>
@@ -299,6 +462,13 @@
             <p>Profesional en formación con experiencia en atención al cliente y manejo de caja. Comprometida, disciplinada y con capacidad para trabajo individual y en equipo.</p>
         </div>
     </header>
+    
+    <!-- Navegación interna -->
+    <div class="nav-internal">
+        <a href="#about" class="nav-btn active"><i class="fas fa-user"></i> Sobre Mí</a>
+        <a href="#repositories" class="nav-btn"><i class="fas fa-code-branch"></i> Mis Repositorios</a>
+        <a href="#contact" class="nav-btn"><i class="fas fa-envelope"></i> Contacto</a>
+    </div>
     
     <div class="container">
         <aside class="sidebar">
@@ -325,7 +495,7 @@
             </section>
         </aside>
         
-        <main class="main-content">
+        <main class="main-content" id="about">
             <section class="profile">
                 <h3><i class="fas fa-user"></i> Perfil</h3>
                 <p class="profile-text">Me considero una persona responsable, comprometida y disciplinada. Me gusta aprender cosas nuevas, además que trabajo bien de forma individual o en equipo, ya que soy muy colaboradora.</p>
@@ -376,7 +546,135 @@
             </section>
         </main>
         
-        <footer>
+        <!-- Sección de Repositorios -->
+        <section class="repositories-section" id="repositories">
+            <h3><i class="fas fa-code-branch"></i> Mis Repositorios Destacados</h3>
+            <p>Aquí puedes encontrar algunos de mis proyectos más relevantes. Haz clic en cualquier tarjeta para visitar el repositorio.</p>
+            
+            <div class="repositories-container">
+                <!-- Repositorio 1 -->
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <div class="repo-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="repo-title">Pameluz.github.io</div>
+                    </div>
+                    <p class="repo-description">Mi sitio web personal y portafolio desarrollado con HTML, CSS y JavaScript. Incluye información profesional y proyectos.</p>
+                    <div class="repo-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">GitHub Pages</span>
+                    </div>
+                    <a href="https://github.com/Pameluz/Pameluz.github.io" class="repo-link" target="_blank">
+                        <i class="fab fa-github"></i> Ver Repositorio
+                    </a>
+                </div>
+                
+                <!-- Repositorio 2 -->
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <div class="repo-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="repo-title">Proyecto Universidad</div>
+                    </div>
+                    <p class="repo-description">Proyectos académicos desarrollados durante mi carrera en la Universidad Técnica de Cotopaxi. Incluye trabajos de programación y análisis.</p>
+                    <div class="repo-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Análisis</span>
+                    </div>
+                    <a href="https://github.com/Pameluz/proyectos-universidad" class="repo-link" target="_blank">
+                        <i class="fab fa-github"></i> Ver Repositorio
+                    </a>
+                </div>
+                
+                <!-- Repositorio 3 -->
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <div class="repo-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="repo-title">App Móvil</div>
+                    </div>
+                    <p class="repo-description">Aplicación móvil desarrollada para gestión de tareas. Interfaz intuitiva y funcionalidades para organización personal.</p>
+                    <div class="repo-tech">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">UI/UX</span>
+                    </div>
+                    <a href="https://github.com/Pameluz/app-movil-gestion" class="repo-link" target="_blank">
+                        <i class="fab fa-github"></i> Ver Repositorio
+                    </a>
+                </div>
+                
+                <!-- Repositorio 4 -->
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <div class="repo-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="repo-title">Sistema de Gestión</div>
+                    </div>
+                    <p class="repo-description">Sistema completo para gestión de inventarios desarrollado como proyecto final de semestre. Frontend y backend integrados.</p>
+                    <div class="repo-tech">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Bootstrap</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/Pameluz/sistema-gestion" class="repo-link" target="_blank">
+                        <i class="fab fa-github"></i> Ver Repositorio
+                    </a>
+                </div>
+                
+                <!-- Repositorio 5 -->
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <div class="repo-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="repo-title">Diseño Web</div>
+                    </div>
+                    <p class="repo-description">Colección de diseños web, plantillas y componentes UI creados con HTML, CSS y JavaScript. Incluye efectos y animaciones.</p>
+                    <div class="repo-tech">
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Animaciones</span>
+                        <span class="tech-tag">Responsive</span>
+                        <span class="tech-tag">Bootstrap</span>
+                    </div>
+                    <a href="https://github.com/Pameluz/web-design" class="repo-link" target="_blank">
+                        <i class="fab fa-github"></i> Ver Repositorio
+                    </a>
+                </div>
+                
+                <!-- Repositorio 6 -->
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <div class="repo-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="repo-title">FLISol 2025</div>
+                    </div>
+                    <p class="repo-description">Materiales y códigos relacionados con mi participación en el Festival Latinoamericano de Instalación de Software Libre 2025.</p>
+                    <div class="repo-tech">
+                        <span class="tech-tag">Software Libre</span>
+                        <span class="tech-tag">Linux</span>
+                        <span class="tech-tag">Documentación</span>
+                        <span class="tech-tag">Presentaciones</span>
+                    </div>
+                    <a href="https://github.com/Pameluz/flisol-2025" class="repo-link" target="_blank">
+                        <i class="fab fa-github"></i> Ver Repositorio
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <footer id="contact">
             <p>CV de Jennifer Pamela Quilmbíureo Izal - Actualizado 2025</p>
             <div class="social-links">
                 <a href="https://github.com/Pameluz" target="_blank"><i class="fab fa-github"></i></a>
@@ -391,7 +689,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Intentar cargar la imagen desde el directorio raíz
             const img = new Image();
-            img.src = 'jenni.jpeg'; // Nombre del archivo que mencionaste
+            img.src = 'image.png'; // Nombre del archivo que mencionaste
             
             img.onload = function() {
                 // Si la imagen existe, reemplazar el placeholder
@@ -405,6 +703,46 @@
             img.onerror = function() {
                 console.log('La imagen no se encontró en el directorio raíz. Se mantiene el placeholder.');
             };
+            
+            // Navegación interna suave
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remover clase active de todos los botones
+                    document.querySelectorAll('.nav-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    
+                    // Agregar clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    // Desplazamiento suave a la sección
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Agregar enlaces reales de tus repositorios aquí
+            // Puedes modificar estos enlaces con tus repositorios reales
+            const repos = [
+                {title: "Pameluz.github.io", link: "https://github.com/Pameluz/Pameluz.github.io"},
+                {title: "Proyecto Universidad", link: "https://github.com/Pameluz/proyectos-universidad"},
+                {title: "App Móvil", link: "https://github.com/Pameluz/app-movil-gestion"},
+                {title: "Sistema de Gestión", link: "https://github.com/Pameluz/sistema-gestion"},
+                {title: "Diseño Web", link: "https://github.com/Pameluz/web-design"},
+                {title: "FLISol 2025", link: "https://github.com/Pameluz/flisol-2025"}
+            ];
+            
+            // Si tienes repositorios específicos, puedes reemplazar los enlaces aquí
+            // Ejemplo: document.querySelectorAll('.repo-link')[0].href = "tu-link-aqui";
         });
     </script>
 </body>
